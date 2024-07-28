@@ -5,11 +5,18 @@ class Ship {
         this.isSunk = isSunk;
     }
 
-    isSunk() {
+    checkIsSunk() {
         if (length === hitNo) {
             isSunk = true;
         }
     }
+
+    hit() {
+        this.hitNo++;
+        this.checkIsSunk();
+    }
 }
+
+let ship1 = new Ship(5);
 
 module.exports = Ship;
