@@ -49,11 +49,21 @@ class gameBoard {
             }
         }
 
-        else if (direction === "vertical") {
+        if (direction === "vertical") {
             for (let i = 0; i < length; i++) {
                 this.board[y + i][x] = 1;
                 ship.coordinates.push([y + i][x]);
             }
+        }
+    }
+
+    receiveAttack(y, x) {
+        if (this.board[y][x] === 0) {
+            this.board[y][x] = "miss"
+        }
+
+        if (this.board[y][x] === 1) {
+            this.board[y][x] = "hit"
         }
     }
 }
