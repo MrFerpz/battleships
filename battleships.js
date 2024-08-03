@@ -90,12 +90,7 @@ class GameBoard {
 class Player {
     constructor(type = "person") {
         this.type = type;
-        this.playerBoard = new GameBoard(); // Initialize the game board for both player and computer
-    }
-
-    // Method to get the player's board
-    getBoard() {
-        return this.playerBoard;
+        this.playerBoard = new GameBoard();
     }
 }
 
