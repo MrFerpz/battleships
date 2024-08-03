@@ -87,4 +87,9 @@ class GameBoard {
     }
 }
 
+let gameBoard = new GameBoard();
+gameBoard.placeShip(3, 4, 5);
+console.log(gameBoard.ships);
+
+
 module.exports = { Ship, GameBoard };
