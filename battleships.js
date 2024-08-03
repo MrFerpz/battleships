@@ -69,6 +69,22 @@ class GameBoard {
             cell.hit();
         }
     }
+
+    printBoard() {
+        for (let row of this.board) {
+            let rowString = row.map(cell => {
+                if (cell === 0) return '0';
+                if (cell === "miss") return 'M';
+                if (cell === "hit") return 'H';
+                return 'S';  // Representing ship with 'S'
+            }).join(' ');
+            console.log(rowString);
+        }
+    }
+
+    checkAllSunk() {
+        return this.ships.every(ship => ship.isSunk);
+    }
 }
 
 module.exports = { Ship, GameBoard };

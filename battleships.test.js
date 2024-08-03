@@ -28,3 +28,14 @@ test('Attacks are received correctly', () => {
     expect(gameBoard3.board[3][4]).toBe("hit");
     expect(gameBoard3.board[9][1]).toBe("miss");
 });
+
+test('Every ship is sunk check works', () => {
+    let gameBoard4 = new GameBoard();
+    gameBoard4.placeShip(5, 6, 4);
+    gameBoard4.receiveAttack(5, 6);
+    gameBoard4.receiveAttack(5, 7);
+    expect(gameBoard4.checkAllSunk().toBeFalsy);
+    gameBoard4.receiveAttack(5, 8);
+    gameBoard4.receiveAttack(5, 9);
+    expect(gameBoard4.checkAllSunk().toBeTruthy);
+})
