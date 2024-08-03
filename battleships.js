@@ -20,7 +20,7 @@ class Ship {
     }
 }
 
-class gameBoard {
+class GameBoard {
     constructor() {
         // set-up empty board when it's new
         this.board = 
@@ -33,7 +33,8 @@ class gameBoard {
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
+        this.ships = [];
     }
 
     // placing ship requires co-ordinates, length, and direction
@@ -44,28 +45,30 @@ class gameBoard {
 
         if (direction === "horizontal") {
             for (let i = 0; i < length; i++) {
-                this.board[y][x + i] = 1;
-                ship.coordinates.push([y][x + i]);
+                this.board[y][x + i] = ship;
+                ship.coordinates.push([y, x + i]);
+            }
+        } else if (direction === "vertical") {
+            for (let i = 0; i < length; i++) {
+                this.board[y + i][x] = ship;
+                ship.coordinates.push([y + i, x]);
             }
         }
 
-        if (direction === "vertical") {
-            for (let i = 0; i < length; i++) {
-                this.board[y + i][x] = 1;
-                ship.coordinates.push([y + i][x]);
-            }
-        }
+        this.ships.push(ship);
     }
 
     receiveAttack(y, x) {
-        if (this.board[y][x] === 0) {
-            this.board[y][x] = "miss"
-        }
 
-        if (this.board[y][x] === 1) {
-            this.board[y][x] = "hit"
+        const cell = this.board[y][x];
+
+        if (cell === 0) {
+            this.board[y][x] = "miss";
+        } else if (cell instanceof Ship) {
+            this.board[y][x] = "hit";
+            cell.hit();
         }
     }
 }
 
-module.exports = {Ship, gameBoard};
+module.exports = { Ship, GameBoard };
