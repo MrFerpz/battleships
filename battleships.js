@@ -87,6 +87,18 @@ class GameBoard {
     }
 }
 
+class Player {
+    constructor(type = "person") {
+        this.type = type;
+        this.playerBoard = new GameBoard(); // Initialize the game board for both player and computer
+    }
+
+    // Method to get the player's board
+    getBoard() {
+        return this.playerBoard;
+    }
+}
+
 let gameBoard = new GameBoard();
 gameBoard.placeShip(3,4,5);
 gameBoard.placeShip(5,7,2);
@@ -94,4 +106,4 @@ gameBoard.placeShip(8,1,2,"vertical")
 console.log(gameBoard.ships);
 
 
-module.exports = { Ship, GameBoard };
+module.exports = { Ship, GameBoard, Player };

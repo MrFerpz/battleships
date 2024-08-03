@@ -39,3 +39,8 @@ test('Every ship is sunk check works', () => {
     gameBoard4.receiveAttack(5, 9);
     expect(gameBoard4.checkAllSunk().toBeTruthy);
 })
+
+test('Player board exists', () => {
+    let player1 = new Player("person");
+    expect(player1.board.length.toBeTruthy);
+})
