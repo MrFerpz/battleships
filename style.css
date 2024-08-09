@@ -1,0 +1,16 @@
+.boards-container {
+    border: solid black 2px;
+    height: 95vh;
+    width: 95vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 20px;
+}
+
+.player-board {
+    border: solid black 2px;
+}
+
+.computer-board {
+    border: solid black 2px;
+}

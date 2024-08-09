@@ -1,4 +1,4 @@
-const { Ship, GameBoard } = require('./battleships');
+const { Ship, GameBoard, Player } = require('./battleships');
 
 test('Class has properties', () => {
     let ship1 = new Ship(5);
@@ -42,5 +42,5 @@ test('Every ship is sunk check works', () => {
 
 test('Player board exists', () => {
     let player1 = new Player("person");
-    expect(player1.board.length.toBeTruthy);
+    expect(player1.playerBoard.board).toBeTruthy;
 })
