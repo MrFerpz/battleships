@@ -10,13 +10,22 @@
 .player-board {
     border: solid black 2px;
     display: grid;
-    grid-template-columns: repeat(10, 1fr)
+    grid-template-rows: repeat(10, 1fr)
 }
 
 .computer-board {
     border: solid black 2px;
 }
 
-.playerCell {
+.player-row {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+}
+
+.player-cell {
     border: solid black 1px;
+}
+
+.player-cell:hover {
+    background-color: lightblue;
 }
