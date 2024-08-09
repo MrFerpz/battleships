@@ -1,4 +1,4 @@
-const { Ship, GameBoard, Player } = require('./battleships');
+import { Ship, GameBoard, Player } from './src/battleships.js';
 
 test('Class has properties', () => {
     let ship1 = new Ship(5);

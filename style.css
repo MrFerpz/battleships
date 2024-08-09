@@ -9,8 +9,14 @@
 
 .player-board {
     border: solid black 2px;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr)
 }
 
 .computer-board {
     border: solid black 2px;
+}
+
+.playerCell {
+    border: solid black 1px;
 }

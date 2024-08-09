@@ -100,4 +100,11 @@ gameBoard.placeShip(5,7,2);
 gameBoard.placeShip(8,1,2,"vertical")
 console.log(gameBoard.ships);
 
-module.exports = { Ship, GameBoard, Player };
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { Ship, GameBoard, Player };
+} else {
+    window.Ship = Ship;
+    window.GameBoard = GameBoard;
+    window.Player = Player;
+}
+
