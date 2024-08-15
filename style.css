@@ -7,25 +7,21 @@
     grid-column-gap: 20px;
 }
 
-.player-board {
+.player-board, .computer-board {
     border: solid black 2px;
     display: grid;
     grid-template-rows: repeat(10, 1fr)
 }
 
-.computer-board {
-    border: solid black 2px;
-}
-
-.player-row {
+.player-row, .comp-row {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
 }
 
-.player-cell {
+.player-cell, .comp-cell {
     border: solid black 1px;
 }
 
-.player-cell:hover {
+.player-cell:hover, .comp-cell:hover {
     background-color: lightblue;
 }
