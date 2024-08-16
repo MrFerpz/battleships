@@ -22,6 +22,10 @@
     border: solid black 1px;
 }
 
-.player-cell:hover, .comp-cell:hover {
+.player-cell:hover {
     background-color: lightblue;
+}
+
+.comp-cell:hover {
+    background-color: pink;
 }

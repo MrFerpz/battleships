@@ -71,6 +71,8 @@ playerOne.playerBoard.placeShip(1, 2, 2);
 playerOne.playerBoard.placeShip(6, 4, 3, "vertical");
 
 CPU.playerBoard.placeShip(4,4,3);
+CPU.playerBoard.placeShip(1,1,4, "vertical");
+CPU.playerBoard.placeShip(6,6,2);
 
 // playerOne.playerBoard.printBoard();
 // console.log(playerOne.playerBoard);
@@ -104,8 +106,10 @@ function updatePlayerDOM() {
                 compCellDOM.setAttribute("style", "background-color: red");
             } else if (compCell === "hit") {
                 compCellDOM.setAttribute("style", "background-color: green");
-            } else {
-                compCellDOM.setAttribute("style", "background-color: grey")
+
+            // commented out the grey ships as they should be hidden
+            // } else {
+            //     compCellDOM.setAttribute("style", "background-color: grey")
             }
         }
     }
