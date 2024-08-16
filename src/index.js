@@ -26,7 +26,7 @@ function initialiseDOM() {
 
         // give them classes
         row.classList.add(`player-row`);
-        comprow.classList.add(`comp-row`)
+        comprow.classList.add(`comp-row`);
 
         // give them ids
         row.setAttribute("id", `player-row${i}`);
@@ -51,7 +51,7 @@ function initialiseDOM() {
 
             // add IDs
             playerCell.setAttribute("id", `player-cell${i}-${j}`);
-            compCell.setAttribute("id", `comp-cells${i}-${j}`);
+            compCell.setAttribute("id", `comp-cell${i}-${j}`);
 
             // add to the rows
             row.appendChild(playerCell);
@@ -75,6 +75,7 @@ CPU.playerBoard.placeShip(4,4,3);
 // playerOne.playerBoard.printBoard();
 // console.log(playerOne.playerBoard);
 console.log(playerOne.playerBoard.board)
+console.log(CPU.playerBoard.board);
 
 function updatePlayerDOM() {
     for (let i = 0; i < 10; i++) {
