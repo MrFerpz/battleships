@@ -23,9 +23,11 @@
 }
 
 .player-cell:hover {
-    background-color: lightblue;
+    background-color: lightblue !important;
+    cursor: pointer;
 }
 
 .comp-cell:hover {
-    background-color: pink;
+    background-color: pink !important;
+    cursor: pointer;
 }

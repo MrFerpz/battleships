@@ -71,7 +71,7 @@ playerOne.playerBoard.placeShip(1, 2, 2);
 playerOne.playerBoard.placeShip(6, 4, 3, "vertical");
 
 CPU.playerBoard.placeShip(4,4,3);
-CPU.playerBoard.placeShip(1,1,4, "vertical");
+CPU.playerBoard.placeShip(1, 1, 4, "vertical");
 CPU.playerBoard.placeShip(6,6,2);
 
 // playerOne.playerBoard.printBoard();
@@ -116,3 +116,14 @@ function updatePlayerDOM() {
 }
 
 updatePlayerDOM();
+console.log(DOM.$compCellArray);
+
+for (let i = 0; i < 10; i++) {
+    for (let j = 0; j < 10; j++) {
+        DOM.$compCellArray[i][j].addEventListener("click", () => {
+            CPU.playerBoard.receiveAttack(i, j);
+            playerOne.playerBoard.receiveAttack((Math.floor(Math.random() * 10)), (Math.floor(Math.random() * 10)));
+            updatePlayerDOM();
+        })
+    }
+}
