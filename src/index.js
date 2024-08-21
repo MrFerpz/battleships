@@ -82,13 +82,10 @@ console.log(CPU.playerBoard.board);
 function updatePlayerDOM() {
     for (let i = 0; i < 10; i++) {
         for (let j = 0; j < 10; j++) {
+            
             // first for the players
             let playerCell = playerOne.playerBoard.board[i][j];
             let playerCellDOM = DOM.$playerCellArray[i][j];
-
-            // then the CPU
-            let compCell = CPU.playerBoard.board[i][j];
-            let compCellDOM = DOM.$compCellArray[i][j];
 
             if (playerCell === 0) {
                 playerCellDOM.setAttribute("style", "background-color: white");
@@ -100,6 +97,14 @@ function updatePlayerDOM() {
                 playerCellDOM.setAttribute("style", "background-color: grey")
             }
 
+            if (playerCell.isSunk === true) {
+                playerCellDOM.setAttribute("style", "background-color: black")
+            }
+
+            // then the CPU
+            let compCell = CPU.playerBoard.board[i][j];
+            let compCellDOM = DOM.$compCellArray[i][j];
+
             if (compCell === 0) {
                 compCellDOM.setAttribute("style", "background-color: white");
             } else if (compCell === "miss") {
@@ -107,9 +112,13 @@ function updatePlayerDOM() {
             } else if (compCell === "hit") {
                 compCellDOM.setAttribute("style", "background-color: green");
 
-            // commented out the grey ships as they should be hidden
+            if (compCell.isSunk === true) {
+                compCellDOM.setAttribute("style", "background-color: black")
+            }
+
+            //  commented out the grey ships as they should be hidden
             // } else {
-            //     compCellDOM.setAttribute("style", "background-color: grey")
+            //  compCellDOM.setAttribute("style", "background-color: grey")
             }
         }
     }
@@ -118,12 +127,30 @@ function updatePlayerDOM() {
 updatePlayerDOM();
 console.log(DOM.$compCellArray);
 
+// make a function for handling an attack
+function handleAttack(i, j) {
+    // delivers attack
+    CPU.playerBoard.receiveAttack(i, j);
+    // receives attack at random
+    playerOne.playerBoard.receiveAttack(Math.floor(Math.random() * 10), Math.floor(Math.random() * 10));
+    // changes colours
+    updatePlayerDOM();
+}
+
+// make sure each cell can trigger handle attack function
 for (let i = 0; i < 10; i++) {
     for (let j = 0; j < 10; j++) {
-        DOM.$compCellArray[i][j].addEventListener("click", () => {
-            CPU.playerBoard.receiveAttack(i, j);
-            playerOne.playerBoard.receiveAttack((Math.floor(Math.random() * 10)), (Math.floor(Math.random() * 10)));
-            updatePlayerDOM();
-        })
+        DOM.$compCellArray[i][j].addEventListener("click", () => handleAttack(i, j));
     }
 }
+
+// my original, longer, less modular logic for attacking and receiving attacks
+// for (let i = 0; i < 10; i++) {
+//     for (let j = 0; j < 10; j++) {
+//         DOM.$compCellArray[i][j].addEventListener("click", () => {
+//             CPU.playerBoard.receiveAttack(i, j);
+//             playerOne.playerBoard.receiveAttack((Math.floor(Math.random() * 10)), (Math.floor(Math.random() * 10)));
+//             updatePlayerDOM();
+//         })
+//     }
+// }
