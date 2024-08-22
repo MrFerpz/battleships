@@ -4,21 +4,21 @@ class Ship {
         this.hitNo = hitNo;
         this.isSunk = isSunk;
         this.coordinates = [];
+        this.wasHit = new Array(length).fill(false); // Array to track hits on each part
+    }
+
+    // function to declare a hit on the ship
+    hit(index) {
+        this.hitNo++;
+        this.wasHit[index] = true; // Mark this part of the ship as hit
+        this.checkIsSunk();
     }
 
     // function to see if ship is still alive
     checkIsSunk() {
         if (this.length === this.hitNo) {
-            console.log("ship sunk");
             this.isSunk = true;
         }
-    }
-
-    // function to declare a hit on the ship
-    hit() {
-        this.hitNo++;
-        console.log(this.hitNo);
-        this.checkIsSunk();
     }
 }
 
@@ -61,16 +61,19 @@ class GameBoard {
     }
 
     receiveAttack(y, x) {
-
         const cell = this.board[y][x];
-
+    
         if (cell === 0) {
             this.board[y][x] = "miss";
         } else if (cell instanceof Ship) {
-            this.board[y][x] = "hit";
-            cell.hit();
+            // Find the index of the hit part of the ship
+            const hitIndex = cell.coordinates.findIndex(coord => coord[0] === y && coord[1] === x);
+            cell.hit(hitIndex);
+            // Leave the ship object in the cell
         }
     }
+    
+    
 
     printBoard() {
         for (let row of this.board) {

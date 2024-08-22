@@ -91,7 +91,7 @@ function updatePlayerDOM() {
 
             if (playerCell instanceof Ship && playerCell.isSunk === true) {
                 playerCellDOM.style.backgroundColor = "black";
-            } else if (playerCell === "hit") {
+            } else if (playerCell instanceof Ship && playerCell.wasHit.some((hit, index) => playerCell.coordinates[index][0] === i && playerCell.coordinates[index][1] === j && hit)) {
                 playerCellDOM.style.backgroundColor = "green";
             } else if (playerCell === "miss") {
                 playerCellDOM.style.backgroundColor = "red";
@@ -110,17 +110,13 @@ function updatePlayerDOM() {
 
             if (compCell instanceof Ship && compCell.isSunk === true) {
                 compCellDOM.style.backgroundColor = "black";
-            } else if (compCell === "hit") {
+            } else if (compCell instanceof Ship && compCell.wasHit.some((hit, index) => compCell.coordinates[index][0] === i && compCell.coordinates[index][1] === j && hit)) {
                 compCellDOM.style.backgroundColor = "green";
             } else if (compCell === "miss") {
                 compCellDOM.style.backgroundColor = "red";
             } else if (compCell === 0) {
                 compCellDOM.style.backgroundColor = "white";
             }
-            // Uncomment if you want to show ship cells before they're hit
-            // else if (compCell instanceof Ship) {
-            //     compCellDOM.style.backgroundColor = "grey";
-            // }
         }
     }
 }
