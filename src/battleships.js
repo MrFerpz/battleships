@@ -9,6 +9,7 @@ class Ship {
     // function to see if ship is still alive
     checkIsSunk() {
         if (this.length === this.hitNo) {
+            console.log("ship sunk");
             this.isSunk = true;
         }
     }
@@ -16,6 +17,7 @@ class Ship {
     // function to declare a hit on the ship
     hit() {
         this.hitNo++;
+        console.log(this.hitNo);
         this.checkIsSunk();
     }
 }

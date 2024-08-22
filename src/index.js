@@ -82,47 +82,49 @@ console.log(CPU.playerBoard.board);
 function updatePlayerDOM() {
     for (let i = 0; i < 10; i++) {
         for (let j = 0; j < 10; j++) {
-            
-            // first for the players
+            // Handle player cells
             let playerCell = playerOne.playerBoard.board[i][j];
             let playerCellDOM = DOM.$playerCellArray[i][j];
 
-            if (playerCell === 0) {
-                playerCellDOM.setAttribute("style", "background-color: white");
-            } else if (playerCell === "miss") {
-                playerCellDOM.setAttribute("style", "background-color: red");
+            // Clear any existing styles
+            playerCellDOM.style.backgroundColor = "";
+
+            if (playerCell instanceof Ship && playerCell.isSunk === true) {
+                playerCellDOM.style.backgroundColor = "black";
             } else if (playerCell === "hit") {
-                playerCellDOM.setAttribute("style", "background-color: green");
-            } else {
-                playerCellDOM.setAttribute("style", "background-color: grey")
+                playerCellDOM.style.backgroundColor = "green";
+            } else if (playerCell === "miss") {
+                playerCellDOM.style.backgroundColor = "red";
+            } else if (playerCell === 0) {
+                playerCellDOM.style.backgroundColor = "white";
+            } else if (playerCell instanceof Ship) {
+                playerCellDOM.style.backgroundColor = "grey";
             }
 
-            if (playerCell.isSunk === true) {
-                playerCellDOM.setAttribute("style", "background-color: black")
-            }
-
-            // then the CPU
+            // Handle CPU cells
             let compCell = CPU.playerBoard.board[i][j];
             let compCellDOM = DOM.$compCellArray[i][j];
 
-            if (compCell === 0) {
-                compCellDOM.setAttribute("style", "background-color: white");
-            } else if (compCell === "miss") {
-                compCellDOM.setAttribute("style", "background-color: red");
+            // Clear any existing styles
+            compCellDOM.style.backgroundColor = "";
+
+            if (compCell instanceof Ship && compCell.isSunk === true) {
+                compCellDOM.style.backgroundColor = "black";
             } else if (compCell === "hit") {
-                compCellDOM.setAttribute("style", "background-color: green");
-
-            if (compCell.isSunk === true) {
-                compCellDOM.setAttribute("style", "background-color: black")
+                compCellDOM.style.backgroundColor = "green";
+            } else if (compCell === "miss") {
+                compCellDOM.style.backgroundColor = "red";
+            } else if (compCell === 0) {
+                compCellDOM.style.backgroundColor = "white";
             }
-
-            //  commented out the grey ships as they should be hidden
-            // } else {
-            //  compCellDOM.setAttribute("style", "background-color: grey")
-            }
+            // Uncomment if you want to show ship cells before they're hit
+            // else if (compCell instanceof Ship) {
+            //     compCellDOM.style.backgroundColor = "grey";
+            // }
         }
     }
 }
+
 
 updatePlayerDOM();
 console.log(DOM.$compCellArray);
